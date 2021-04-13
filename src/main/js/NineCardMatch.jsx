@@ -15,8 +15,6 @@ const buildRandomizedArray = (arrayToRandomize) => {
 }
 
 const calcSelectedState = (keyCard, cardSelected) => {
-    console.log(keyCard);
-    console.log(cardSelected);
     if (keyCard.props.name.charAt(0) === cardSelected.props.name.charAt(0)){
         return SelectedState.CORRECT;
     }
@@ -37,8 +35,6 @@ export const NineCardMatch = (props) => {
         
     const keyCard = makeCardFromModel(props.model.keyCard, SelectedState.NOT_SELECTED);
     const [cardsToMatch, setCardsToMatch] = useState(cardModels.map((cardModel)=>makeCardFromModel(cardModel, SelectedState.NOT_SELECTED, cardSelected)));
-
-    
 
     return (
         <Container>

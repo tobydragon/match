@@ -26,8 +26,14 @@ const calcSelectedState = (keyCard, cardSelected) => {
 export const NineCardMatch = (props) => {
     
     const cardSelected = (cardName) => {
+        console.log("Before:");
+        console.log(cardsToMatch);
         const newCards = cardsToMatch.map((card)=> (card.props.name!==cardName) ? card: makeCardFromModel({name: card.props.name, imageUrl:card.props.imageUrl}, calcSelectedState(keyCard, card), cardSelected));
-        setCardsToMatch(newCards); 
+        setCardsToMatch(newCards);
+        console.log("New:");
+        console.log(newCards);
+        console.log("After:");
+        console.log(cardsToMatch); 
     }
 
     //randomize model array

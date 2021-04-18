@@ -29,6 +29,13 @@ const calcSelectedState = (keyCard, cardSelected) => {
     }
 }
 
+export const calcCurrentScore = (cardModels) => {
+    const correctCount = cardModels.filter((cardModel)=> cardModel.selectedState === SelectedState.CORRECT).length;
+    const incorrectCount = cardModels.filter((cardModel)=> cardModel.selectedState === SelectedState.INCORRECT).length;
+    console.log(correctCount, incorrectCount);
+    return correctCount - incorrectCount;
+}
+
 export const NineCardMatch = (props) => {
 
     const randomizedCardModels= buildRandomizedArray(props.model.cardsToMatch).map((cardModel)=>makeNewModelsWithSelectedState(cardModel, SelectedState.NOT_SELECTED));
@@ -43,10 +50,10 @@ export const NineCardMatch = (props) => {
     const cardsToMatch = cardModels.map((cardModel)=>makeCardFromModel(cardModel, cardSelected));
     return (
         <Container>
-          <Row >
-            <CardDeck className="py-2">
-                {cardsToMatch.slice(0,3)}
-            </CardDeck>
+            <Row >
+                <CardDeck className="py-2">
+                    {cardsToMatch.slice(0,3)}
+                </CardDeck>
             </Row>
             <Row >
                 <CardDeck className="py-2">

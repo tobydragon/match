@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Row, CardDeck, Container } from "react-bootstrap";
+import { Jumbotron, Row, Col, CardDeck, Container } from "react-bootstrap";
 import SubjectCard from "./SubjectCard";
 import {SelectedState} from "./SubjectCard";
 
@@ -50,6 +50,15 @@ export const NineCardMatch = (props) => {
     const cardsToMatch = cardModels.map((cardModel)=>makeCardFromModel(cardModel, cardSelected));
     return (
         <Container>
+            <Jumbotron>
+                <Row>
+                    <Col className="align-items-center">
+                        <Row className="justify-content-center align-items-center">
+                            <h1>{"Score: " + calcCurrentScore(cardModels)}</h1>
+                        </Row>
+                    </Col>
+                </Row>
+            </Jumbotron>
             <Row >
                 <CardDeck className="py-2">
                     {cardsToMatch.slice(0,3)}

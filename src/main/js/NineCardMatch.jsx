@@ -32,8 +32,14 @@ const calcSelectedState = (keyCard, cardSelected) => {
 export const calcCurrentScore = (cardModels) => {
     const correctCount = cardModels.filter((cardModel)=> cardModel.selectedState === SelectedState.CORRECT).length;
     const incorrectCount = cardModels.filter((cardModel)=> cardModel.selectedState === SelectedState.INCORRECT).length;
-    console.log(correctCount, incorrectCount);
     return correctCount - incorrectCount;
+}
+
+export const selectedAllCorrect = (keyCard, cardModels) => {
+    return cardModels
+        .filter((cardModel)=> cardModel.selectedState === SelectedState.NOT_SELECTED)
+        .filter((cardModel)=> calcSelectedState(keyCard, cardModel) === SelectedState.CORRECT)
+        .length === 0;
 }
 
 export const NineCardMatch = (props) => {
@@ -48,13 +54,14 @@ export const NineCardMatch = (props) => {
         
     const keyCard = makeCardFromModel(props.model.keyCard, SelectedState.NOT_SELECTED);
     const cardsToMatch = cardModels.map((cardModel)=>makeCardFromModel(cardModel, cardSelected));
+    const message = selectedAllCorrect(props.model.keyCard, cardModels)? "Well Done!": "Keep Trying...";
     return (
         <Container>
             <Jumbotron>
                 <Row>
                     <Col className="align-items-center">
                         <Row className="justify-content-center align-items-center">
-                            <h1>{"Score: " + calcCurrentScore(cardModels)}</h1>
+                            <h1>{"Score: " + calcCurrentScore(cardModels)+ "\t"+ message}</h1>
                         </Row>
                     </Col>
                 </Row>
@@ -75,10 +82,7 @@ export const NineCardMatch = (props) => {
             </CardDeck>
             </Row>  
         </Container>
-        
-        
     );
-
 }
 
 export default NineCardMatch;

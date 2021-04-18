@@ -1,8 +1,8 @@
-import {buildRandomizedArray, makeNewModelsWithSelectedState, calcCurrentScore} from "../../main/js/NineCardMatch";
+import {buildRandomizedArray, makeNewModelsWithSelectedState, calcCurrentScore, selectedAllCorrect} from "../../main/js/NineCardMatch";
 import { SelectedState } from "../../main/js/SubjectCard";
 import { NineCardMatchGameModel } from "./data/NineCardMatchObject"
 
-describe('NineCardMatch', () => {
+describe('NineCardMatchCurrentScore', () => {
     test('calcCurrentScore1', () => {
         //make some of each state
         const corrects = NineCardMatchGameModel.cardsToMatch.slice(0, 2).map((card)=> makeNewModelsWithSelectedState(card, SelectedState.CORRECT));
@@ -39,5 +39,22 @@ describe('NineCardMatch', () => {
         // console.log(allRandom);
         expect(calcCurrentScore(allRandom)).toBe(0);
 
+    });
+});
+
+describe('NineCardMatchSelectedAllCorrect', () => {
+    test('selectedAllCorrect1', () => {
+        const cards = NineCardMatchGameModel.cardsToMatch.map((card)=> makeNewModelsWithSelectedState(card, SelectedState.NOT_SELECTED));
+        expect(selectedAllCorrect(NineCardMatchGameModel.keyCard, cards)).toBeFalsy();
+    });
+    test('selectedAllCorrect2', () => {
+        const allCorrectSetCorrect = NineCardMatchGameModel.cardsToMatch
+            .filter((card)=> card.name.charAt(0) === NineCardMatchGameModel.keyCard.name.charAt(0))
+            .map((card)=> makeNewModelsWithSelectedState(card, SelectedState.CORRECT));
+        const allOthers = NineCardMatchGameModel.cardsToMatch
+            .filter((card)=> card.name.charAt(0) !== NineCardMatchGameModel.keyCard.name.charAt(0))
+            .map((card)=> makeNewModelsWithSelectedState(card, SelectedState.NOT_SELECTED));
+        const mixedUp = buildRandomizedArray([].concat(allCorrectSetCorrect, allOthers));
+        expect(selectedAllCorrect(NineCardMatchGameModel.keyCard, mixedUp)).toBeTruthy();
     });
 });

@@ -3,11 +3,17 @@ import { Row, CardDeck, Container } from "react-bootstrap";
 import SubjectCard from "./SubjectCard";
 import {SelectedState} from "./SubjectCard";
 
-const makeCardFromModel = (cardModel, selectedState, cardClicked) => {
-    return <SubjectCard name={cardModel.name} imageUrl={cardModel.imageUrl} selectedState={selectedState} cardClicked={cardClicked} />;
+const makeCardFromModel = (cardModel, cardClicked) => {
+    return <SubjectCard name={cardModel.name} imageUrl={cardModel.imageUrl} selectedState={cardModel.selectedState} cardClicked={cardClicked} />;
 }
 
-const buildRandomizedArray = (arrayToRandomize) => {
+export const makeNewModelsWithSelectedState = (cardModel, selectedState) => {
+    let newModel = JSON.parse(JSON.stringify(cardModel));
+    newModel.selectedState=selectedState;
+    return newModel;
+}
+
+export const buildRandomizedArray = (arrayToRandomize) => {
     return arrayToRandomize
         .map((a) => ({sort: Math.random(), value: a}))
         .sort((a, b) => a.sort - b.sort)
@@ -15,7 +21,7 @@ const buildRandomizedArray = (arrayToRandomize) => {
 }
 
 const calcSelectedState = (keyCard, cardSelected) => {
-    if (keyCard.props.name.charAt(0) === cardSelected.props.name.charAt(0)){
+    if (keyCard.name.charAt(0) === cardSelected.name.charAt(0)){
         return SelectedState.CORRECT;
     }
     else {
@@ -24,24 +30,17 @@ const calcSelectedState = (keyCard, cardSelected) => {
 }
 
 export const NineCardMatch = (props) => {
+
+    const randomizedCardModels= buildRandomizedArray(props.model.cardsToMatch).map((cardModel)=>makeNewModelsWithSelectedState(cardModel, SelectedState.NOT_SELECTED));
+    const [cardModels, setCardModels] = useState(randomizedCardModels);
     
     const cardSelected = (cardName) => {
-        console.log("Before:");
-        console.log(cardsToMatch);
-        const newCards = cardsToMatch.map((card)=> (card.props.name!==cardName) ? card: makeCardFromModel({name: card.props.name, imageUrl:card.props.imageUrl}, calcSelectedState(keyCard, card), cardSelected));
-        setCardsToMatch(newCards);
-        console.log("New:");
-        console.log(newCards);
-        console.log("After:");
-        console.log(cardsToMatch); 
+        const newCards = cardModels.map((cardModel)=> (cardModel.name!==cardName) ? cardModel: makeNewModelsWithSelectedState(cardModel, calcSelectedState(props.model.keyCard, cardModel)));
+        setCardModels(newCards);
     }
-
-    //randomize model array
-    const cardModels = buildRandomizedArray(props.model.cardsToMatch);
         
     const keyCard = makeCardFromModel(props.model.keyCard, SelectedState.NOT_SELECTED);
-    const [cardsToMatch, setCardsToMatch] = useState(cardModels.map((cardModel)=>makeCardFromModel(cardModel, SelectedState.NOT_SELECTED, cardSelected)));
-
+    const cardsToMatch = cardModels.map((cardModel)=>makeCardFromModel(cardModel, cardSelected));
     return (
         <Container>
           <Row >

@@ -1,4 +1,4 @@
-import {buildRandomizedArray, makeNewModelsWithSelectedState, calcCurrentScore, selectedAllCorrect} from "../../main/js/NineCardMatch";
+import {buildRandomizedArray, makeNewModelsWithSelectedState, calcCurrentScore, selectedAllCorrect} from "../../main/js/NineCardMatchRound";
 import { SelectedState } from "../../main/js/SubjectCard";
 import { NineCardMatchGameModel } from "./data/NineCardMatchObject"
 

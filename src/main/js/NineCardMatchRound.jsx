@@ -42,8 +42,7 @@ export const selectedAllCorrect = (keyCard, cardModels) => {
         .length === 0;
 }
 
-export const NineCardMatch = (props) => {
-
+export const NineCardMatchRound = (props) => {
     const randomizedCardModels= buildRandomizedArray(props.model.cardsToMatch).map((cardModel)=>makeNewModelsWithSelectedState(cardModel, SelectedState.NOT_SELECTED));
     const [cardModels, setCardModels] = useState(randomizedCardModels);
     
@@ -52,7 +51,7 @@ export const NineCardMatch = (props) => {
         setCardModels(newCards);
     }
         
-    const keyCard = makeCardFromModel(props.model.keyCard, SelectedState.NOT_SELECTED);
+    const keyCard = makeCardFromModel(props.model.keyCard, null);
     const cardsToMatch = cardModels.map((cardModel)=>makeCardFromModel(cardModel, cardSelected));
     const message = selectedAllCorrect(props.model.keyCard, cardModels)? "Well Done!": "Keep Trying...";
     return (
@@ -61,7 +60,7 @@ export const NineCardMatch = (props) => {
                 <Row>
                     <Col className="align-items-center">
                         <Row className="justify-content-center align-items-center">
-                            <h1>{"Score: " + calcCurrentScore(cardModels)+ "\t"+ message}</h1>
+                            <h1>{"Current Round Score: " + calcCurrentScore(cardModels)+ "\t"+ message}</h1>
                         </Row>
                     </Col>
                 </Row>
@@ -85,4 +84,4 @@ export const NineCardMatch = (props) => {
     );
 }
 
-export default NineCardMatch;
+export default NineCardMatchRound;

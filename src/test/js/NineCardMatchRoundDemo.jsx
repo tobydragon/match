@@ -1,8 +1,8 @@
-import NineCardMatch from "../../main/js/NineCardMatch";
+import NineCardMatchGame from "../../main/js/NineCardMatchGame";
 import { NineCardMatchGameModel } from "./data/NineCardMatchObject";
 
 export const NineCardMatchDemo = () => {
-    return <NineCardMatch model={NineCardMatchGameModel} />;
+    return <NineCardMatchGame model={NineCardMatchGameModel} />;
 }
 
 export default NineCardMatchDemo;

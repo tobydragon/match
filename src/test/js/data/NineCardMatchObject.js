@@ -1,8 +1,8 @@
 export const NineCardMatchGameModel = {
-    keyCard: {
-        name:"B",
-        imageUrl:"https://www.freebiefindingmom.com/wp-content/uploads/2020/10/Printable_Bubble_Letters_Flower_Letter_B-1.jpg"
-    },
+    keyCard: [
+        {name:"B", imageUrl:"https://www.freebiefindingmom.com/wp-content/uploads/2020/10/Printable_Bubble_Letters_Flower_Letter_B-1.jpg"},
+        {name:"C", imageUrl:"https://www.freebiefindingmom.com/wp-content/uploads/2020/10/Printable_Bubble_Letters_Flower_Letter_C-1.jpg"}
+    ],
     cardsToMatch: [
         {name:"Cat", imageUrl:"https://coloringhome.com/coloring/8i6/EMR/8i6EMR5iE.gif"},
         {name:"Car", imageUrl:"https://coloringhome.com/coloring/pc7/dar/pc7darRc9.gif"},

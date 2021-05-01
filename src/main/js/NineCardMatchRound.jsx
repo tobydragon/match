@@ -1,4 +1,4 @@
-import { Jumbotron, Row, Col, CardDeck, Container } from "react-bootstrap";
+import { Row, CardDeck, Container } from "react-bootstrap";
 import SubjectCard from "./SubjectCard";
 import {SelectedState} from "./SubjectCard";
 
@@ -25,31 +25,31 @@ export const NineCardMatchRound = (props) => {
     const keyCard = makeCardFromModel(props.model.keyCard, null);
     const cardsToMatch = props.model.cardsToMatch.map((cardModel)=>makeCardFromModel(cardModel, props.cardSelected));
     return (
-        <Container>
-            <Jumbotron>
-                <Row>
-                    <Col className="align-items-center">
-                        <Row className="justify-content-center align-items-center">
-                            <h1>{"Current Round Score: " + calcCurrentScore(props.model.cardsToMatch)+ "\t"}</h1>
-                        </Row>
-                    </Col>
-                </Row>
-            </Jumbotron>
-            <Row >
-                <CardDeck className="py-2">
-                    {cardsToMatch.slice(0,3)}
-                </CardDeck>
+        <Container fluid>
+            <Row className="justify-content-center align-items-center">
+                <h1>{"Current Round Score: " + calcCurrentScore(props.model.cardsToMatch)+ "\t"}</h1>
+            </Row>
+            <Row>
+                <Container fluid>
+                    <CardDeck>
+                        {cardsToMatch.slice(0,3)}
+                    </CardDeck>
+                </Container>
             </Row>
             <Row >
-                <CardDeck className="py-2">
-                    {[cardsToMatch[3],keyCard,cardsToMatch[4]]}
-                </CardDeck>
+                <Container fluid>
+                    <CardDeck>
+                        {[cardsToMatch[3],keyCard,cardsToMatch[4]]}
+                    </CardDeck>
+                </Container>
             </Row>
             <Row >
-            <CardDeck className="py-2">
-                {cardsToMatch.slice(5)}
-            </CardDeck>
-            </Row>  
+                <Container fluid>
+                    <CardDeck>
+                        {cardsToMatch.slice(5)}
+                    </CardDeck>
+                </Container>
+            </Row>
         </Container>
     );
 }

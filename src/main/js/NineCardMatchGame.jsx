@@ -46,7 +46,7 @@ export const NineCardMatchGame = (props) => {
         const newCards = roundModel.cardsToMatch.map((cardModel)=> (cardModel.name!==cardName) ? cardModel: makeNewModelsWithSelectedState(cardModel, calcSelectedState(roundModel.keyCard, cardModel)));
         if (selectedAllCorrect(roundModel.keyCard, newCards)){
             setScore(score+calcCurrentScore(newCards));
-           setRoundModel(createNineCardMatchRoundModel(NineCardMatchGameModel.cardsToMatch));
+            setRoundModel(createNineCardMatchRoundModel(NineCardMatchGameModel.cardsToMatch));
         }
         else {
             setRoundModel({keyCard: roundModel.keyCard, cardsToMatch: newCards});

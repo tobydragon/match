@@ -25,7 +25,7 @@ export const NineCardMatchRound = (props) => {
     const keyCard = makeCardFromModel(props.model.keyCard, null);
     const cardsToMatch = props.model.cardsToMatch.map((cardModel)=>makeCardFromModel(cardModel, props.cardSelected));
     return (
-        <Container fluid>
+        <Container>
             <Row className="justify-content-center align-items-center">
                 <h1>{"Current Round Score: " + calcCurrentScore(props.model.cardsToMatch)+ "\t"}</h1>
             </Row>

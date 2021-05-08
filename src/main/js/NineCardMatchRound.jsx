@@ -26,25 +26,25 @@ export const NineCardMatchRound = (props) => {
     const cardsToMatch = props.model.cardsToMatch.map((cardModel)=>makeCardFromModel(cardModel, props.cardSelected));
     return (
         <Container>
-            <Row className="justify-content-center align-items-center">
+            <Row className="header">
                 <h1>{"Current Round Score: " + calcCurrentScore(props.model.cardsToMatch)+ "\t"}</h1>
             </Row>
             <Row>
-                <Container fluid>
-                    <CardDeck>
+                <Container>
+                    <CardDeck >
                         {cardsToMatch.slice(0,3)}
                     </CardDeck>
                 </Container>
             </Row>
             <Row >
-                <Container fluid>
+                <Container>
                     <CardDeck>
                         {[cardsToMatch[3],keyCard,cardsToMatch[4]]}
                     </CardDeck>
                 </Container>
             </Row>
             <Row >
-                <Container fluid>
+                <Container>
                     <CardDeck>
                         {cardsToMatch.slice(5)}
                     </CardDeck>

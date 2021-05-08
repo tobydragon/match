@@ -55,11 +55,9 @@ export const NineCardMatchGame = (props) => {
 
     return (
         <Container>
-            <Jumbotron>
-                <Row className="justify-content-center align-items-center">
-                    <h1>{"Overall Score: " + score}</h1>
-                </Row>
-            </Jumbotron>
+            <Row className="header">
+                <h1>{"Overall Score: " + score}</h1>
+            </Row>
             <NineCardMatchRound model={roundModel} cardSelected={cardSelected}/>
         </Container>
     );

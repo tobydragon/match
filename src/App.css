@@ -7,12 +7,25 @@
   border-width: 2px;
   border-style: outset;
   border-color: #eee;
+  max-width: 15rem;
+}
+
+.card-deck {
+  justify-content: center;
+  align-items: center;
 }
 
 .App {
-  text-align: center;
   background-color:#ddd;
 }
+
+.header {
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 
 .App-logo {
   height: 40vmin;

@@ -15,9 +15,9 @@ export const SubjectCard = (props) => {
     }
 
     return (
-        <Card onClick={cardClicked} style={{ width: '15rem' }} bg={props.selectedState} >
+        <Card onClick={cardClicked} bg={props.selectedState} >
             <Card.Img src={props.imageUrl} alt={props.name} />
-            <Card.Title align="center">{props.name}</Card.Title>
+            <Card.Title class="SubjectCard" align="center">{props.name}</Card.Title>
         </Card>
     );
 }

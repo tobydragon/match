@@ -1,10 +1,13 @@
 import './App.css';
 
 import SubjectCardDemo from './test/js/SubjectCardDemo'
-import NineCardMatchDemo from './test/js/NineCardMatchRoundDemo';
+import NineCardMatchRoundDemo from './test/js/NineCardMatchRoundDemo';
+
 function App() {
   return (
-    <NineCardMatchDemo/>
+    <div class="App">
+      <NineCardMatchRoundDemo/>
+    </div>
   );
 }
 

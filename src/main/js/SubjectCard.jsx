@@ -1,7 +1,7 @@
 import { Card } from "react-bootstrap";
 
 export const SelectedState = {
-    NOT_SELECTED: "secondary",
+    NOT_SELECTED: "light",
     CORRECT: "success",
     INCORRECT: "danger"
 }
@@ -17,7 +17,7 @@ export const SubjectCard = (props) => {
     return (
         <Card onClick={cardClicked} bg={props.selectedState} >
             <Card.Img src={props.imageUrl} alt={props.name} />
-            <Card.Title class="SubjectCard" align="center">{props.name}</Card.Title>
+            {/* <Card.Title className="SubjectCard" align="center">{props.name}</Card.Title> */}
         </Card>
     );
 }

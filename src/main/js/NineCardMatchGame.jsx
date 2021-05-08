@@ -6,16 +6,25 @@ import {SelectedState} from "./SubjectCard";
 import { NineCardMatchGameModel } from "../../test/js/data/NineCardMatchObject"
 
 export const createNineCardMatchRoundModel = (cardModels) => {
+    const keyCardModel = createKeyCardModel();
     return {
-        keyCard: createKeyCardModel(),
-        cardsToMatch: buildRandomizedArray(cardModels).map((cardModel)=>makeNewModelsWithSelectedState(cardModel, SelectedState.NOT_SELECTED))
+        keyCard:keyCardModel ,
+        cardsToMatch: create8otherCardModels(cardModels, keyCardModel)
     };
 }
 
 export const createKeyCardModel = () => {
-    const possibleLetters = ["B", "C"];
+    const possibleLetters = ["A", "B", "C", "D", "E", "F"];
     const letter = possibleLetters[Math.floor(Math.random() * possibleLetters.length)];
-    return  {name:letter, imageUrl:"https://www.freebiefindingmom.com/wp-content/uploads/2020/10/Printable_Bubble_Letters_Flower_Letter_"+letter+"-1.jpg"};
+    return makeNewModelsWithSelectedState({name:letter, imageUrl:"https://www.freebiefindingmom.com/wp-content/uploads/2020/10/Printable_Bubble_Letters_Flower_Letter_"+letter+"-1.jpg"}, SelectedState.NOT_SELECTED);
+}
+
+export const create8otherCardModels = (cardModels, keyCardModel) => {
+    const matchingCardCount = 4;
+    const matchingCards = buildRandomizedArray(cardModels.filter((cardModel)=> calcSelectedState(keyCardModel, cardModel) === SelectedState.CORRECT)).slice(0, matchingCardCount);
+    const otherCount = 8-matchingCards.length;
+    const otherCards = buildRandomizedArray(cardModels.filter((cardModel)=> calcSelectedState(keyCardModel, cardModel) !== SelectedState.CORRECT)).slice(0, otherCount);
+    return buildRandomizedArray(matchingCards.concat(otherCards)).map((cardModel)=>makeNewModelsWithSelectedState(cardModel, SelectedState.NOT_SELECTED));
 }
 
 export const makeNewModelsWithSelectedState = (cardModel, selectedState) => {

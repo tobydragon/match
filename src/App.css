@@ -10,6 +10,10 @@
   max-width: 15rem;
 }
 
+.card-img {
+  opacity: 0.8;
+}
+
 .card-deck {
   justify-content: center;
   align-items: center;

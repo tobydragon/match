@@ -9,6 +9,10 @@ export const SelectedState = {
     INCORRECT: "incorrect"
 }
 
+/**
+ * @prop {string} name - the title to put at the bottom of the card
+ * @prop {string} imageUrl - path to image to display
+ */
 export const SubjectCard = (props) => {
 
     const cardClicked = (e) => {

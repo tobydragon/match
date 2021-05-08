@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Jumbotron, Row, Container } from "react-bootstrap";
+import { Row, Container } from "react-bootstrap";
 
 import NineCardMatchRound, { calcCurrentScore, calcSelectedState } from "./NineCardMatchRound";
 import {SelectedState} from "./SubjectCard";
@@ -20,7 +20,7 @@ export const createKeyCardModel = () => {
 }
 
 export const create8otherCardModels = (cardModels, keyCardModel) => {
-    const matchingCardCount = 4;
+    const matchingCardCount = 3;
     const matchingCards = buildRandomizedArray(cardModels.filter((cardModel)=> calcSelectedState(keyCardModel, cardModel) === SelectedState.CORRECT)).slice(0, matchingCardCount);
     const otherCount = 8-matchingCards.length;
     const otherCards = buildRandomizedArray(cardModels.filter((cardModel)=> calcSelectedState(keyCardModel, cardModel) !== SelectedState.CORRECT)).slice(0, otherCount);

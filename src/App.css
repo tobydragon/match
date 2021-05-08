@@ -1,14 +1,4 @@
-.card {
-  background-color: #282c34;
-  color: #fff;
-  font-size: 48px;
-  margin: 20px;
-  box-shadow: 5px 5px 10px #777;
-  border-width: 2px;
-  border-style: outset;
-  border-color: #eee;
-  max-width: 15rem;
-}
+
 
 .card-deck {
   justify-content: center;
@@ -23,8 +13,6 @@
   justify-content: center;
   align-items: center;
 }
-
-
 
 
 .App-logo {

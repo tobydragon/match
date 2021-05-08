@@ -1,11 +1,18 @@
+import './SubjectCard.css';
+
 import { Card } from "react-bootstrap";
 
+//values are css classNames, see SubjectCard.css
 export const SelectedState = {
-    NOT_SELECTED: "secondary",
-    CORRECT: "success",
-    INCORRECT: "danger"
+    NOT_SELECTED: "notSelected",
+    CORRECT: "correct",
+    INCORRECT: "incorrect"
 }
 
+/**
+ * @prop {string} name - the title to put at the bottom of the card
+ * @prop {string} imageUrl - path to image to display
+ */
 export const SubjectCard = (props) => {
 
     const cardClicked = (e) => {
@@ -15,9 +22,9 @@ export const SubjectCard = (props) => {
     }
 
     return (
-        <Card onClick={cardClicked} bg={props.selectedState} >
+        <Card className={props.selectedState} onClick={cardClicked}>
             <Card.Img src={props.imageUrl} alt={props.name} />
-            <Card.Title class="SubjectCard" align="center">{props.name}</Card.Title>
+            <Card.Title className="SubjectCard" align="center">{props.name}</Card.Title>
         </Card>
     );
 }
